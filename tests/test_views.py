@@ -3,9 +3,10 @@ from blog.views import *
 from django.test import TestCase, Client
 from django.core import serializers
 
+from blog.forms import CommentForm
 from blog.models import Post, Category, Comment
 
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 import unittest
 import pytest
 
@@ -17,7 +18,7 @@ class TestViews(TestCase):
 
         def setUp(self):
                 print("SETTING UP")
-                cat_hobby = Category.objects.create(name="Hobby")
+                cat_hobby = Category.objects.create(name="Hobby777777777777")
                 post_cca = Post.objects.create(title="CCA", body="Yoga")
                 post_cca.categories.add(cat_hobby)
                 post_cca.save()
@@ -41,6 +42,14 @@ class TestViews(TestCase):
 
         def test_blog_detail(self):
                 mock = MagicMock()
-                print(mock)
                 response = blog_detail(mock, 1)
                 assert 200 == response.status_code
+
+        def test_blog_detail_form(self):
+                mock = MagicMock()
+                mock.method = 'POST'
+                mock.POST = {'author': ['TEST TITLE'], 'body': ['TEST BODY']}
+                response = blog_detail(mock, 1)
+                assert 200 == response.status_code
+                
+                

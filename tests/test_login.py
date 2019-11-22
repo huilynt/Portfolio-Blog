@@ -12,9 +12,10 @@ class TestLogin(TestCase):
         driver = self.driver
         driver.get('http://localhost:8000/admin/login/?next=/admin/')
         assert "Log in | Django site admin" in driver.title
+        original_page_source = driver.page_source
         username = driver.find_element_by_name("username")
         username.send_keys(Keys.RETURN)
-        assert "Log in | Django site admin" in driver.page_source
+        assert original_page_source == driver.page_source
 
     def test_login_wrong_username(self):
         driver = self.driver

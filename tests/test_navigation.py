@@ -15,7 +15,7 @@ class TestNavigation(TestCase):
         header = driver.find_element_by_link_text("Hui Lin's Portfolio")
         header.click()
         current_url = driver.current_url
-        assert current_url == 'http://localhost:8000/home/'
+        assert 'http://localhost:8000/home/' == current_url
 
     def test_click_home(self):
         driver = self.driver
@@ -24,7 +24,7 @@ class TestNavigation(TestCase):
         home = driver.find_element_by_link_text("Home")
         home.click()
         current_url = driver.current_url
-        assert current_url == 'http://localhost:8000/home/'
+        assert 'http://localhost:8000/home/' == current_url
 
     def test_click_blog(self):
         driver = self.driver
@@ -33,7 +33,7 @@ class TestNavigation(TestCase):
         blog = driver.find_element_by_link_text("Blog")
         blog.click()
         current_url = driver.current_url
-        assert current_url == 'http://localhost:8000/blog/'
+        assert 'http://localhost:8000/blog/' == current_url
 
     def test_click_post(self):
         driver = self.driver
@@ -43,7 +43,7 @@ class TestNavigation(TestCase):
         post = driver.find_element_by_link_text("Patch")
         post.click()
         current_url = driver.current_url
-        assert current_url == 'http://localhost:8000/blog/3/'
+        assert 'http://localhost:8000/blog/3/' == current_url
 
     def test_click_category(self):
         driver = self.driver
@@ -53,7 +53,7 @@ class TestNavigation(TestCase):
         category = driver.find_element_by_link_text("Projects")
         category.click()
         current_url = driver.current_url
-        assert current_url == 'http://localhost:8000/blog/Projects/'
+        assert 'http://localhost:8000/blog/Projects/' == current_url
 
     def tearDown(self):
         self.driver.close()
